@@ -1114,3 +1114,24 @@ export default defineConfig({
 - 🔗 [Testing Library Query Priority](https://testing-library.com/docs/queries/about#priority)
 - 🔗 [Vitest Documentation](https://vitest.dev/)
 - 🔗 [Common Testing Library Mistakes](https://kentcdodds.com/blog/common-mistakes-with-react-testing-library)
+
+
+**Deliverables**
+
+Austin Casey 26JAN26
+
+## Reflection questions
+
+2.2 getByRole allows you to search for the specific UI element the way a user would try to find it on the page. getByTestId is for elements that cannot be seen by the user, so getByRole is closer to how users interact with the UI.
+
+3.2 Using getByRole for the alert would return an error if it could not find the error message. queryByRole returns null if the error message is not found, which is what we expect to happen so we do not want to get an error.
+
+4.3 findBy should be used when text or an element will be generated but has not been yet. getBy should be used when the element or text is already present. This relates to the discussion in the library documentation where it says findby returns a promise rather than an element.
+
+The downside of getByTestId is that you could be checking for what the name of an element is in your code but not by what it is to the user. By using getByRole or getByLabelText you can make sure that it is labeled properly on the front end. This provides another layer of reliability because it interacts with your code the way a user would with the UI.
+
+queryBy should be used when you are unsure that the element actually exists, or you expect it not to. This could be useful if you are testing that an element gets deleted. It could also be useful to ensure something does not throw a code. The reason this is better is because it returns null if the element is not found. getBy on the other hand will throw an error if the element is not found. This would cause your test to fail, even if the condition you were expecting is returned.
+
+Mocking API calls can be quicker as you do not need to go through the work of actually connecting to the real backend. This can also allow you to start working on elements that require calls to the backend before you have created or finished it. The downside is that you will have to do some rework to connect to the actual backend and it is less reliable since there is a chance the backend will work differently than your mocked API. Also, sometimes making a lot of calls to a real backend during development may not be possible or may cost money.
+
+In this lab I learned how to using React Testing Library queries, how to mock API calls, and how to test async vs sync behavior.
